@@ -1,0 +1,13 @@
+button {
+  appearance: none;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+button div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: bold 10pt arial;
+  cursor: pointer;
+}
