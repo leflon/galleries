@@ -1,6 +1,6 @@
-import {Component, inject} from '@angular/core';
-import {LoginButtonComponent} from './components/login-button/login-button.component';
-import {RouterOutlet} from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { LoginButtonComponent } from './components/login-button/login-button.component';
 
 @Component({
   selector: 'app-root',

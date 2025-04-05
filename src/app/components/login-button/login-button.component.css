@@ -4,6 +4,7 @@ button {
   border-radius: 5px;
   border: 1px solid #ddd;
 }
+
 button div {
   display: flex;
   align-items: center;

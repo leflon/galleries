@@ -1,9 +1,9 @@
-import {Component, inject} from '@angular/core';
-import {Observable} from 'rxjs';
-import {IGallery} from '../../models/gallery.model';
-import {GalleryService} from '../../services/gallery.service';
-import {AsyncPipe, NgForOf} from '@angular/common';
-import {RouterLink} from '@angular/router';
+import { AsyncPipe, NgForOf } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IGallery } from '../../models/gallery.model';
+import { GalleryService } from '../../services/gallery.service';
 
 @Component({
   selector: 'app-my-galleries-page',

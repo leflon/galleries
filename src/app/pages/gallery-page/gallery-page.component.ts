@@ -1,11 +1,11 @@
-import {Component, inject} from '@angular/core';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {EMPTY, filter, map, Observable, of, switchMap, take} from 'rxjs';
-import {IMedia} from '../../models/media.model';
-import {IGallery} from '../../models/gallery.model';
-import {GalleryService} from '../../services/gallery.service';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
-import {MediaService} from '../../services/media.service';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Observable, of, switchMap } from 'rxjs';
+import { IGallery } from '../../models/gallery.model';
+import { IMedia } from '../../models/media.model';
+import { GalleryService } from '../../services/gallery.service';
+import { MediaService } from '../../services/media.service';
 
 @Component({
   selector: 'app-gallery-page',
@@ -23,9 +23,9 @@ export class GalleryPageComponent {
   galleryService = inject(GalleryService);
   mediaService = inject(MediaService);
 
+  gallery$: Observable<IGallery | null>;
+  media$: Observable<IMedia[]>;
 
-  gallery$!: Observable<IGallery | null>;
-  media$!: Observable<IMedia[]>;
   constructor() {
     this.gallery$ = this.route.params.pipe(
       switchMap(params => {
@@ -33,6 +33,7 @@ export class GalleryPageComponent {
         return this.galleryService.getById(id);
       })
     );
+
     this.media$ = this.gallery$.pipe(
       switchMap(gallery => gallery ? this.mediaService.getAllFromGallery(gallery.id) : of([]))
     );

@@ -1,6 +1,6 @@
-import {Component, inject} from '@angular/core';
-import {AsyncPipe, NgIf, NgOptimizedImage} from '@angular/common';
-import {AuthService} from '../../services/auth.service';
+import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'login-button',
