@@ -7,7 +7,8 @@ import {GalleryService} from '../../services/gallery.service';
 import {MediaService} from '../../services/media.service';
 import {GalleryViewerComponent} from '../../components/gallery-viewer/gallery-viewer.component';
 import {AsyncPipe, NgIf} from '@angular/common';
-import {FullscreenMediaComponent} from '../../components/gallery-viewer/fullscreen-media/fullscreen-media.component';
+import {FullscreenMediaComponent} from '../../components/fullscreen-media/fullscreen-media.component';
+import {MediaAdderComponent} from '../../components/media-adder/media-adder.component';
 
 @Component({
   selector: 'app-gallery-page',
@@ -16,7 +17,8 @@ import {FullscreenMediaComponent} from '../../components/gallery-viewer/fullscre
     GalleryViewerComponent,
     AsyncPipe,
     NgIf,
-    FullscreenMediaComponent
+    FullscreenMediaComponent,
+    MediaAdderComponent
   ],
   templateUrl: './gallery-page.component.html',
   styleUrl: './gallery-page.component.css'
@@ -43,7 +45,13 @@ export class GalleryPageComponent {
     next: string | null;
   }>;
 
+  isAdding$!: Observable<boolean>;
+
+  constructor() {
+  }
+
   ngOnInit() {
+
     this.fullscreen$ = this.router.events.pipe(
       // Runs only once after each navigation ends
       filter(event => event instanceof NavigationEnd),
@@ -70,6 +78,16 @@ export class GalleryPageComponent {
           }));
       }),
     );
+
+    this.isAdding$ = this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      startWith(null),
+      switchMap(_ => {
+        if (!this.route.firstChild) return of(false); // -> no /add
+        return this.route.firstChild.data.pipe(map(d => d['isAdding']))
+      })
+    );
   }
+
 
 }

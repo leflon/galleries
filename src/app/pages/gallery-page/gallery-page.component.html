@@ -8,6 +8,14 @@
       {{ media.length }} images
     </div>
   </div>
+  <a routerLink='add'>Add media</a>
+  @let isAdding = isAdding$ | async;
+  @if (isAdding) {
+    <app-media-adder
+      (closed)="router.navigate(['.'], {relativeTo: route})"
+      [gallery]="gallery"
+    ></app-media-adder>
+  }
   <app-gallery-viewer *ngIf="media$ | async as media" [media]="media">
   </app-gallery-viewer>
   @let state = fullscreen$ | async;

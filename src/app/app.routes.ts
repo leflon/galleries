@@ -23,6 +23,13 @@ export const routes: Routes = [
     canMatch: [galleryAccessGuard],
     children: [
       {
+        path: 'add',
+        loadComponent: () => import('./pages/gallery-page/gallery-page.component').then(m => m.GalleryPageComponent),
+        data: {
+          isAdding: true
+        }
+      },
+      {
         path: ':mediaId',
         loadComponent: () => import('./pages/gallery-page/gallery-page.component').then(m => m.GalleryPageComponent),
       }
