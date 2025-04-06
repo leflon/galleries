@@ -8,9 +8,16 @@
       {{ media.length }} images
     </div>
   </div>
-  <app-gallery-viewer [media$]="media$">
+  <app-gallery-viewer *ngIf="media$ | async as media" [media]="media">
   </app-gallery-viewer>
-  <app-fullscreen-media *ngIf="fullscreenMedia$ | async as media" [data]="media"></app-fullscreen-media>
+  @let state = fullscreen$ | async;
+  @if (state && state.current !== null) {
+    <app-fullscreen-media
+      [data]="state.current"
+      [nextId]="state.next"
+      [previousId]="state.previous"
+    ></app-fullscreen-media>
+  }
 </div>
 <ng-template #loading>
   <h1>Loading</h1>
