@@ -1,0 +1,11 @@
+<app-popup (closed)="closed.emit()">
+  <a *ngIf="previousId" [routerLink]="[previousId]">
+    <ng-icon color="#fff" name="matChevronLeft" size="32"></ng-icon>
+  </a>
+
+  <img [alt]="data.tags.join(',')" [src]="data.url"/>
+
+  <a *ngIf="nextId" [routerLink]="[nextId]">
+    <ng-icon color="#fff" name="matChevronRight" size="32"></ng-icon>
+  </a>
+</app-popup>

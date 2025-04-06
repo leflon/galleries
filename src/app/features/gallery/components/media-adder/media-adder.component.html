@@ -1,0 +1,22 @@
+<app-popup (closed)="closed.emit()">
+  <div class="box">
+    <h1>Add media to {{ gallery.name }}</h1>
+    <div class="sources">
+      <div *ngFor="let s of inputtedSources; index as i" class="source-item">
+        <div>
+          {{ s }}
+        </div>
+        <button (click)="removeSource(i)">X</button>
+
+      </div>
+    </div>
+    <div>
+      <input [(ngModel)]="currentSource" placeholder="https://image.com/good-image.jpg" type="url"/>
+      <button (click)="appendSource()">Add</button>
+    </div>
+    <div>
+      <input [(ngModel)]="tags" placeholder="Tags seperated by commas"/>
+    </div>
+    <button (click)="save()" *ngIf="inputtedSources.length > 0">Save {{ inputtedSources.length }} new media</button>
+  </div>
+</app-popup>

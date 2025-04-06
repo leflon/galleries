@@ -1,0 +1,8 @@
+<a [relativeTo]="activatedRoute" [routerLink]="['./', data.id]" class='media-item'>
+  <div class="top-gradient"></div>
+  <div class="bottom-gradient"></div>
+  <img [alt]="data.tags.join(', ')" [src]="data.url"/>
+  <div class="tags">
+    <div *ngFor="let t of data.tags" class="tag">{{ t }}</div>
+  </div>
+</a>

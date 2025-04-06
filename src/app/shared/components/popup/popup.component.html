@@ -1,0 +1,9 @@
+<div class="outer">
+  <div (click)="closed.emit()" class="close">
+    <ng-icon color="#fff" name="matClose" size="32"></ng-icon>
+  </div>
+  <div (click)="closed.emit()" class="background"></div>
+  <div class="inner">
+    <ng-content></ng-content>
+  </div>
+</div>
