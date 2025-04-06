@@ -1,12 +1,16 @@
 <div>
   <a routerLink="/my-galleries">← Back to my galleries</a>
 </div>
-<div *ngIf="gallery$ | async as gallery else loading">
-  <h1>{{gallery.name}}</h1>
-  <div *ngFor="let m of media$ | async">
-    <img [src]="m.url" width="300" height="300" />
-    <span *ngFor="let t of m.tags">{{t}}</span>
+<div *ngIf="gallery$ | async as gallery">
+  <div class="title">
+    <div class="title-name">{{ gallery.name }}</div>
+    <div *ngIf="media$ | async as media" class="stats">
+      {{ media.length }} images
+    </div>
   </div>
+  <app-gallery-viewer [media$]="media$">
+  </app-gallery-viewer>
+  <app-fullscreen-media *ngIf="fullscreenMedia$ | async as media" [data]="media"></app-fullscreen-media>
 </div>
 <ng-template #loading>
   <h1>Loading</h1>

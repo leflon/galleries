@@ -1,7 +1,7 @@
 export interface IMedia {
   id: string;
   tags: string[];
-  position: number;
+  index: number;
   type: 'image' | 'gif' | 'video';
   url: string;
 }
