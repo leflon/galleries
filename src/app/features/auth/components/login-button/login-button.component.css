@@ -5,6 +5,11 @@ button {
   border: 1px solid #ddd;
 }
 
+img {
+  width: 32px;
+  height: 32px;
+}
+
 button div {
   display: flex;
   align-items: center;

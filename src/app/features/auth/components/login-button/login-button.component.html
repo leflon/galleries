@@ -1,10 +1,11 @@
 <button (click)="toggleAuth()">
   <div *ngIf="authService.user$ | async as user ; else login">
-    Log out ({{user.displayName}})
+    Log out ({{ user.displayName }})
   </div>
   <ng-template #login>
     <div>
-      <img ngSrc="/g-icon.png" width="32" height="32" alt="Google" priority />
+      <img alt="Google" height="2048" ngSrc="/g-icon.png" priority
+           width="2048"/>
       <span>Login With Google</span>
     </div>
   </ng-template>
