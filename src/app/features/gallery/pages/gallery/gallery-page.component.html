@@ -24,6 +24,7 @@
       [data]="state.current"
       [nextId]="state.next"
       [previousId]="state.previous"
+      (closed)="router.navigate(['.'], {relativeTo: route})"
     ></app-fullscreen-media>
   }
 </div>
