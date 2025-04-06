@@ -1,6 +1,6 @@
-import { inject, Injectable } from '@angular/core';
-import { Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, User } from '@angular/fire/auth';
-import { Observable } from 'rxjs';
+import {inject, Injectable} from '@angular/core';
+import {Auth, authState, GoogleAuthProvider, signInWithPopup, signOut, User} from '@angular/fire/auth';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   async loginWithGoogle() {
-    const res = await signInWithPopup(this.auth, new GoogleAuthProvider());
+    await signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
   logout() {

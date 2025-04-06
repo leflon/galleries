@@ -1,6 +1,6 @@
-import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import {AsyncPipe, NgIf, NgOptimizedImage} from '@angular/common';
+import {Component, inject} from '@angular/core';
+import {AuthService} from '../../../../shared/services/auth.service';
 
 @Component({
   selector: 'login-button',
@@ -14,6 +14,7 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginButtonComponent {
   authService: AuthService = inject(AuthService);
+  protected readonly JSON = JSON;
 
   toggleAuth() {
     if (this.authService.isLoggedIn())
@@ -21,6 +22,4 @@ export class LoginButtonComponent {
     else
       this.authService.loginWithGoogle();
   }
-
-  protected readonly JSON = JSON;
 }
