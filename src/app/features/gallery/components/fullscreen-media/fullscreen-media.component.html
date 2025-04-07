@@ -1,13 +1,26 @@
 <app-popup (closed)="closed.emit()">
   <div class="container">
-    <a *ngIf="previousId" [routerLink]="[previousId]">
-      <ng-icon color="#fff" name="matChevronLeft" size="32"></ng-icon>
-    </a>
-
+    @if (previousId) {
+      <app-button
+        color="#fff"
+        type="discrete"
+        (click)="router.navigate([previousId],{relativeTo: activatedRoute})"
+      >
+        <ng-icon button-icon name="matChevronLeft" size="32"></ng-icon>
+      </app-button>
+    }
     <img [alt]="data.tags.join(',')" [src]="data.url"/>
 
-    <a *ngIf="nextId" [routerLink]="[nextId]">
-      <ng-icon color="#fff" name="matChevronRight" size="32"></ng-icon>
-    </a>
+    @if (nextId) {
+      <a [routerLink]="[nextId]">
+        <app-button
+          color="#fff"
+          type="discrete"
+          (click)="router.navigate([nextId],{relativeTo: activatedRoute})"
+        >
+          <ng-icon button-icon name="matChevronRight" size="32"></ng-icon>
+        </app-button>
+      </a>
+    }
   </div>
 </app-popup>

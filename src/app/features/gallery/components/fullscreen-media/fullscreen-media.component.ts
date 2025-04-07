@@ -3,16 +3,16 @@ import {IMedia} from '../../models/media.model';
 import {NgIcon, provideIcons} from '@ng-icons/core';
 import {matChevronLeft, matChevronRight, matClose} from '@ng-icons/material-icons/baseline';
 import {ActivatedRoute, Router, RouterLink} from '@angular/router';
-import {NgIf} from '@angular/common';
 import {PopupComponent} from '../../../../shared/components/popup/popup.component';
+import {ButtonComponent} from '../../../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-fullscreen-media',
   imports: [
     NgIcon,
     RouterLink,
-    NgIf,
-    PopupComponent
+    PopupComponent,
+    ButtonComponent
   ],
   viewProviders: [provideIcons({matClose, matChevronRight, matChevronLeft})],
   templateUrl: './fullscreen-media.component.html',
