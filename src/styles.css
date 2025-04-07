@@ -2,3 +2,26 @@ html {
   font-family: 'Lexend', sans-serif;
   font-weight: 300;
 }
+
+input,
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='url'] {
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  padding: 4px 2px;
+  border: 2px solid #151c32;
+  border-radius: 8px;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #1f4ee4;
+  }
+}
+
+[button-icon] {
+  display: contents;
+}

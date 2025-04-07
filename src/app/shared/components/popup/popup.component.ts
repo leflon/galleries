@@ -1,11 +1,13 @@
 import {Component, output} from '@angular/core';
 import {NgIcon, provideIcons} from '@ng-icons/core';
 import {matClose} from '@ng-icons/material-icons/baseline';
+import {ButtonComponent} from '../button/button.component';
 
 @Component({
   selector: 'app-popup',
   imports: [
-    NgIcon
+    NgIcon,
+    ButtonComponent
   ],
   viewProviders: [provideIcons({matClose})],
   host: {

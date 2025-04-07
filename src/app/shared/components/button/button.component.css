@@ -1,0 +1,77 @@
+.no-icon, .no-content {
+  display: none;
+}
+
+button {
+  --color: #1f4ee4;
+  --text-color: #fff;
+  font-size: 12pt;
+  appearance: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Lexend', sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+
+  &.primary {
+    color: var(--text-color);
+    background-color: var(--color);
+    box-shadow: 0 4px 8px color-mix(in srgb, var(--color), transparent 60%);
+    border: none;
+    transition: box-shadow .3s ease, transform .1s ease;
+  }
+
+  &.secondary {
+    background: transparent;
+    color: var(--color);
+    border: 0.5px solid var(--color);
+    box-shadow: none;
+    transition: background .3s ease, transform .1s ease;
+
+    &:hover, &:focus {
+      background: color-mix(in srgb, var(--color), transparent 90%);
+    }
+  }
+
+
+  &:hover, &:focus {
+    box-shadow: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &.icon:not(.textual) {
+    padding: 6px;
+    border-radius: 50%;
+
+    &:active {
+      transition: .3s ease;
+      transform: scale(0.95);
+    }
+  }
+
+  &.discrete {
+    background: none;
+    box-shadow: none;
+    border: none;
+    color: var(--color);
+    transition: background .2s ease;
+
+    &:hover, &:focus {
+      background: color-mix(in srgb, var(--color), transparent 90%);
+    }
+
+    &:active {
+      transform: none !important;
+      background: color-mix(in srgb, var(--color), transparent 80%);
+    }
+  }
+}
+
+

@@ -1,4 +1,5 @@
 .box {
+  position: relative;
   background: white;
   border-radius: 10px;
   padding: 10px;
@@ -7,23 +8,87 @@
   height: 400px;
 }
 
+h1 {
+  text-align: center;
+  margin: 10px auto;
+}
 
 .sources {
-  width: 80%;
-  white-space: nowrap;
-  overflow: hidden;
+  height: 50%;
+  overflow: auto;
+  border: 1px solid #eee;
+  border-radius: 4px;
 }
 
 .source-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 5px;
+  height: 50px;
+}
+
+.source-item img {
+  display: inline-block;
+  height: 80%;
+  object-fit: contain;
+  padding: 0 10px;
+}
+
+.source-item:nth-child(odd) {
+  background: #f5f5f5;
+}
+
+.source-item:nth-child(even):last-child {
+  border-bottom: 1px solid #eee;
 }
 
 
-.source-item > div {
+.source-item .source-url {
   flex: 1;
+  white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
+  overflow-x: hidden;
   margin: 5px 0;
+}
+
+.tags-input {
+  display: flex;
+  gap: 10px;
+}
+
+.tag-list {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  max-width: 50%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.tag-list::-webkit-scrollbar {
+  display: none;
+}
+
+.tag {
+  border: 1px solid #000;
+  border-radius: 10em;
+  padding: 2px 4px;
+}
+
+
+.save-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.source-input {
+  display: flex;
+  gap: 10px;
+  margin: 10px auto;
+}
+
+.source-input input {
+  flex: 1;
 }

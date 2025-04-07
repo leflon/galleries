@@ -1,0 +1,16 @@
+<button
+  (click)="onClick($event)"
+  [class.icon]="hasIcon()"
+  [class.textual]="hasContent()"
+  [class]="type()"
+  [style.--color]="color()"
+  [style.--text-color]="textColor()"
+>
+  <ng-content select="[button-icon]">
+    <div #noIcon class="no-icon"></div>
+  </ng-content>
+  <ng-content>
+    <div #noContent class="no-content"></div>
+  </ng-content>
+</button>
+
