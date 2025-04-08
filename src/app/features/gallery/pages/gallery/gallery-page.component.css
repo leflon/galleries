@@ -1,11 +1,31 @@
-.title {
+.heading {
   margin: 10px 0;
+  text-align: center;
 }
 
-.title-name {
-  font: 700 26pt "Lexend";
+.gallery-name {
+  font: 700 40pt "Lexend";
 }
 
 .stats {
   margin-left: 5px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+
+.user img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+}
+
+.user div {
+  font: 300 11pt "Lexend";
 }

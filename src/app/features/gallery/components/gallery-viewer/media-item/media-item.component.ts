@@ -27,6 +27,6 @@ export class MediaItemComponent {
   protected readonly window = window;
 
   delete() {
-    this.mediaService.delete(this.galleryId(), this.data().id);
+    return this.mediaService.delete(this.galleryId(), this.data().id);
   }
 }

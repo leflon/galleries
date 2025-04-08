@@ -9,6 +9,7 @@ import {GalleryViewerComponent} from '../../components/gallery-viewer/gallery-vi
 import {AsyncPipe, NgIf} from '@angular/common';
 import {FullscreenMediaComponent} from '../../components/fullscreen-media/fullscreen-media.component';
 import {MediaAdderComponent} from '../../components/media-adder/media-adder.component';
+import {AuthService} from '../../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-gallery-page',
@@ -28,6 +29,7 @@ export class GalleryPageComponent {
   router = inject(Router);
   galleryService = inject(GalleryService);
   mediaService = inject(MediaService);
+  authService = inject(AuthService);
 
   gallery$: Observable<IGallery | null> = this.route.params.pipe(
     switchMap(params => {

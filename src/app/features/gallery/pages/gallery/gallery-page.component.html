@@ -2,8 +2,15 @@
   <a routerLink="/my-galleries">← Back to my galleries</a>
 </div>
 <div *ngIf="gallery$ | async as gallery">
-  <div class="title">
-    <div class="title-name">{{ gallery.name }}</div>
+  <div class="heading">
+    @let user = authService.user$ | async;
+    @if (user) {
+      <div class="user">
+        <img alt="User" [src]="user.photoURL"/>
+        <div>{{ user.displayName }}</div>
+      </div>
+    }
+    <div class="gallery-name">{{ gallery.name }}</div>
     <div *ngIf="media$ | async as media" class="stats">
       {{ media.length }} images
     </div>
