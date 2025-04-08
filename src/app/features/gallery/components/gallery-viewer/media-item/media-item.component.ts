@@ -27,6 +27,9 @@ export class MediaItemComponent {
   protected readonly window = window;
 
   delete() {
-    return this.mediaService.delete(this.galleryId(), this.data().id);
+    //TODO: Make a real modal
+    if (confirm('Are you sure?')) {
+      this.mediaService.delete(this.galleryId(), this.data().id);
+    }
   }
 }
