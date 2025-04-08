@@ -1,3 +1,4 @@
 <div *ngIf="media" class="gallery-grid">
-  <app-media-item *ngFor="let m of media" [data]="m"></app-media-item>
+  <app-media-item *ngFor="let m of media()" [data]="m"
+                  [galleryId]="galleryId()"></app-media-item>
 </div>

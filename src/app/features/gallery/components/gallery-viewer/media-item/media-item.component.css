@@ -15,19 +15,46 @@ img {
   object-fit: cover;
 }
 
-.bottom-gradient {
+.bottom-container {
   position: absolute;
   bottom: 0;
   z-index: 1;
   width: 100%;
-  height: 20%;
+  height: 30%;
   background: linear-gradient(to top, #0006 0%, transparent 100%);
+  display: flex;
+  flex-direction: column-reverse;
+  transform: translateY(100%);
+  transition: transform 0.2s;
+  pointer-events: none;
+}
+
+.media-item:hover .bottom-container {
+  transform: translateY(0);
+}
+
+.top-container {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, #0006 0%, transparent 100%);
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  transition: transform 0.2s;
+  pointer-events: none;
+}
+
+.top-container .tools {
+  pointer-events: all;
+  padding: 5px;
+  display: flex;
 }
 
 .tags {
-  position: absolute;
-  bottom: 0;
-  z-index: 2;
+  pointer-events: all;
   display: flex;
   gap: 4px;
   padding: 4px;
@@ -48,8 +75,4 @@ img {
   border-radius: 10em;
   color: white;
   font-size: 10pt;
-}
-
-.tags .tag:last-child {
-  margin-right: 20px;
 }

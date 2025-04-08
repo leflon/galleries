@@ -16,7 +16,8 @@
       [gallery]="gallery"
     ></app-media-adder>
   }
-  <app-gallery-viewer *ngIf="media$ | async as media" [media]="media">
+  <app-gallery-viewer *ngIf="media$ | async as media" [galleryId]="gallery.id"
+                      [media]="media">
   </app-gallery-viewer>
   @let state = fullscreen$ | async;
   @if (state && state.current !== null) {

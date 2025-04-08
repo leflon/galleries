@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, input} from '@angular/core';
 import {IMedia} from '../../models/media.model';
 import {NgForOf, NgIf} from '@angular/common';
 import {MediaItemComponent} from './media-item/media-item.component';
@@ -15,6 +15,7 @@ import {MediaItemComponent} from './media-item/media-item.component';
 })
 export class GalleryViewerComponent {
 
-  @Input() media: IMedia[] = [];
+  media = input.required<IMedia[]>();
+  galleryId = input.required<string>();
 
 }

@@ -1,8 +1,27 @@
-<a [relativeTo]="activatedRoute" [routerLink]="['./', data.id]" class='media-item'>
-  <div class="top-gradient"></div>
-  <div class="bottom-gradient"></div>
-  <img [alt]="data.tags.join(', ')" [src]="data.url"/>
-  <div class="tags">
-    <div *ngFor="let t of data.tags" class="tag">{{ t }}</div>
+<div class='media-item'>
+  <div class="top-container">
+    <div class="tools">
+      <app-button (click)="window.open(data().url, '_blank')"
+                  color="#fff"
+                  type="discrete"
+      >
+        <ng-icon button-icon name="matOpenInNew" size="24"></ng-icon>
+      </app-button>
+      <app-button (click)="delete()" color="#fff" type="discrete">
+        <ng-icon button-icon name="matDelete" size="24"></ng-icon>
+      </app-button>
+    </div>
   </div>
-</a>
+  <a [relativeTo]="activatedRoute" [routerLink]="['./', data().id]">
+    <img [alt]="data().tags.join(', ')" [src]="data().url"/>
+  </a>
+  @if (data().tags.length > 0) {
+    <div class="bottom-container">
+      <div class="tags">
+        @for (t of data().tags; track t) {
+          <div class="tag">{{ t }}</div>
+        }
+      </div>
+    </div>
+  }
+</div>

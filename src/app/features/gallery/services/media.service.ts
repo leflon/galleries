@@ -1,5 +1,13 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, Firestore, getCountFromServer, writeBatch} from '@angular/fire/firestore';
+import {
+  collection,
+  collectionData,
+  deleteDoc,
+  doc,
+  Firestore,
+  getCountFromServer,
+  writeBatch
+} from '@angular/fire/firestore';
 import {map, Observable} from 'rxjs';
 import {IMedia} from '../models/media.model';
 
@@ -29,4 +37,10 @@ export class MediaService {
     }
     return batch.commit();
   }
+
+  delete(galleryId: string, mediaId: string) {
+    const mediaRef = doc(this.firestore, `galleries/${galleryId}/media/${mediaId}`);
+    return deleteDoc(mediaRef);
+  }
+
 }
