@@ -1,0 +1,30 @@
+<div (dragover)="allowDrop($event)"
+     (drop)="onDrop($event)"
+     class="media-drawer">
+  <form>
+    <input (change)="onFileInput($event)" accept="image/*" id="file-input" type="file"/>
+  </form>
+  <label class="explorer-catcher" for="file-input"></label>
+  @if (items().length > 0) {
+    <div class="media-list">
+      @for (item of items(); track item; let i = $index) {
+        <app-media-drawer-item [data]="item" (delete)="delete(i)"></app-media-drawer-item>
+      }
+    </div>
+  } @else {
+    <div class="empty">
+      <ng-icon name="matAddPhotoAlternateOutline" color="#aaa" size="128"></ng-icon>
+      <div>Drop or paste files/URLs here to upload!</div>
+    </div>
+  }
+  <div class="bottom-input">
+    <label class="btn" for="file-input">
+      <ng-icon color="white" name="matUpload" size="24"></ng-icon>
+    </label>
+    <input (keydown.enter)="onInputSend()" [(ngModel)]="inputValue" placeholder="Enter image URL or paste file"
+           type="text"/>
+    <div (click)="onInputSend()" class="btn">
+      <ng-icon color="white" name="matSubdirectoryArrowLeft" size="24"></ng-icon>
+    </div>
+  </div>
+</div>

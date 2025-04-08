@@ -1,0 +1,17 @@
+<div class="item">
+  <div (click)="delete.emit()" class="close">
+    <ng-icon color="white" name="matClose"></ng-icon>
+  </div>
+  @if (isFailed()) {
+    <div class="error">
+      <div>(✖╭╮✖)</div>
+      <p>Failed to load image</p>
+    </div>
+  } @else if (imgSrc() === null) {
+    <app-loading></app-loading>
+  } @else {
+    <div class="viewer">
+      <img [src]="imgSrc()"/>
+    </div>
+  }
+</div>

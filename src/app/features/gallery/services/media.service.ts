@@ -10,10 +10,13 @@ import {
 } from '@angular/fire/firestore';
 import {map, Observable} from 'rxjs';
 import {IMedia} from '../models/media.model';
+import {IMediaAdderItem} from '../models/mediaAdderItem.model';
+import {StorageService} from './storage.service';
 
 @Injectable({providedIn: 'root'})
 export class MediaService {
   firestore = inject(Firestore);
+  storage = inject(StorageService);
 
   getAllFromGallery(galleryId: string): Observable<IMedia[]> {
     const mediaRef = collection(this.firestore, `galleries/${galleryId}/media`);
@@ -24,6 +27,30 @@ export class MediaService {
       )
     ) as Observable<IMedia[]>;
   }
+
+  async handleMediaAdder(items: IMediaAdderItem[], tags: string[], galleryId: string) {
+    const files = items.filter(m => m.type === 'file').map(m => m.file!);
+    const uploaded = await this.storage.bulkUpload(galleryId, files);
+    const media: Omit<Omit<IMedia, 'index'>, 'id'>[] = [];
+    let i = 0;
+    for (const entry of items) {
+      if (entry.type === 'url') {
+        media.push({
+          tags,
+          type: 'image' as 'image',
+          url: entry.url!
+        });
+      } else {
+        media.push({
+          tags,
+          type: 'image' as 'image',
+          url: uploaded[i++].url
+        });
+      }
+    }
+    return this.addBulk(media, galleryId);
+  }
+
 
   async addBulk(media: Omit<Omit<IMedia, 'index'>, 'id'>[], galleryId: string) {
     const size = (await getCountFromServer(collection(this.firestore, `galleries/${galleryId}/media`))).data().count;

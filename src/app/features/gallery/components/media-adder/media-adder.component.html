@@ -1,27 +1,7 @@
 <app-popup (closed)="closed.emit()">
   <div class="box">
     <h1>Add media to {{ gallery.name }}</h1>
-    <div class="sources">
-      <div *ngFor="let s of inputtedSources(); index as i" class="source-item">
-        <img [src]="s" alt="Source {{i}}"/>
-        <div class="source-url">
-          {{ s }}
-        </div>
-        <app-button (click)="removeSource(i)" color="red" type="discrete">
-          <div button-icon>
-            <ng-icon name="matDelete" size="24"></ng-icon>
-          </div>
-        </app-button>
-      </div>
-    </div>
-    <div class="source-input">
-      <input (keydown)="sourceKeyDown($event)"
-             [(ngModel)]="currentSource"
-             placeholder="https://image.com/good-image.jpg"
-             type="text"
-      />
-      <app-button (click)="appendSource()">Add</app-button>
-    </div>
+    <app-media-drawer [(items)]="items"></app-media-drawer>
     <div class="tags-input">
       @if (tags().length > 0) {
         <div class="tag-list">
@@ -32,9 +12,9 @@
       }
       <input (keydown)="tagKeyDown($event)" [(ngModel)]="tagInput" placeholder="Tags seperated by commas"/>
     </div>
-    @if (inputtedSources().length > 0) {
+    @if (items().length > 0) {
       <app-button class="save-btn" (click)="save()">
-        Save {{ inputtedSources().length }} new media
+        Save {{ items().length }} new media
       </app-button>
     }
   </div>
