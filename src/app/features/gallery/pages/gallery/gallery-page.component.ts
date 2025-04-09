@@ -70,12 +70,10 @@ export class GalleryPageComponent {
             if (!current)
               return {current: null, next: null, previous: null};
 
-            const previous = mediaList.find(m => m.index === current.index - 1);
-            const next = mediaList.find(m => m.index === current.index + 1);
             return {
               current,
-              next: next?.id ?? null,
-              previous: previous?.id ?? null
+              next: current.next,
+              previous: current.previous
             }
           }));
       }),
