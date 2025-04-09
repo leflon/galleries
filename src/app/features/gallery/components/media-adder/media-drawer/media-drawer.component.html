@@ -1,9 +1,19 @@
-<div (dragover)="allowDrop($event)"
+<div (dragenter)="onDragEnter($event)"
+     (dragleave)="onDragLeave($event)"
+     (dragover)="allowDrop($event)"
      (drop)="onDrop($event)"
      class="media-drawer">
   <form>
     <input (change)="onFileInput($event)" accept="image/*" id="file-input" type="file"/>
   </form>
+  <div [class.visible]="isDragging()" class="drag-cta">
+    <div>
+      <div>
+        <ng-icon color="#aaa" name="matUploadFile" size="128"></ng-icon>
+        <div>Drop your files here!</div>
+      </div>
+    </div>
+  </div>
   <label class="explorer-catcher" for="file-input"></label>
   @if (items().length > 0) {
     <div class="media-list">
@@ -12,12 +22,12 @@
       }
     </div>
   } @else {
-    <div class="empty">
+    <div class="empty" [class.hidden]="isDragging()">
       <ng-icon name="matAddPhotoAlternateOutline" color="#aaa" size="128"></ng-icon>
       <div>Drop or paste files/URLs here to upload!</div>
     </div>
   }
-  <div class="bottom-input">
+  <div [class.hidden]="isDragging()" class="bottom-input">
     <label class="btn" for="file-input">
       <ng-icon color="white" name="matUpload" size="24"></ng-icon>
     </label>

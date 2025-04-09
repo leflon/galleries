@@ -1,9 +1,9 @@
-import {Component, model} from '@angular/core';
+import {Component, model, signal} from '@angular/core';
 import {IMediaAdderItem} from '../../../models/mediaAdderItem.model';
 import {MediaDrawerItemComponent} from './media-drawer-item/media-drawer-item.component';
 import {NgIcon, provideIcons} from '@ng-icons/core';
 import {matAddPhotoAlternateOutline} from '@ng-icons/material-icons/outline';
-import {matSubdirectoryArrowLeft, matUpload} from '@ng-icons/material-icons/baseline';
+import {matSubdirectoryArrowLeft, matUpload, matUploadFile} from '@ng-icons/material-icons/baseline';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -14,7 +14,7 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   standalone: true,
-  providers: [provideIcons({matAddPhotoAlternateOutline, matSubdirectoryArrowLeft, matUpload})],
+  providers: [provideIcons({matAddPhotoAlternateOutline, matSubdirectoryArrowLeft, matUpload, matUploadFile})],
   templateUrl: './media-drawer.component.html',
   styleUrl: './media-drawer.component.css',
   host: {
@@ -26,8 +26,20 @@ export class MediaDrawerComponent {
   items = model.required<IMediaAdderItem[]>();
   inputValue = '';
 
+  isDragging = signal(false);
+
   allowDrop($event: DragEvent) {
     $event.preventDefault();
+    this.isDragging.set(true);
+  }
+
+  onDragEnter(_$event: DragEvent) {
+    this.isDragging.set(true);
+  }
+
+  onDragLeave($event: DragEvent) {
+    $event.preventDefault();
+    this.isDragging.set(false);
   }
 
   appendItem({file, url}: { file?: File, url?: string }) {
@@ -60,6 +72,7 @@ export class MediaDrawerComponent {
 
   onDrop($event: DragEvent) {
     $event.preventDefault();
+    this.isDragging.set(false);
     if ($event.dataTransfer) {
       for (const f of $event.dataTransfer.files) {
         this.appendItem({file: f});
