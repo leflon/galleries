@@ -1,0 +1,15 @@
+rules_version = '2';
+service firebase.storage {
+  function getGallery(galleryId) {
+    return firestore.get(/databases/(default)/documents/galleries/$(galleryId));
+  }
+
+  match /b/{bucket}/o {
+
+    match /{galleryId}/{mediaId} {
+      allow read, write, update, delete: if request.auth != null &&
+          getGallery(galleryId).data.ownerId == request.auth.uid;
+      allow read: if getGallery(galleryId).data.isPublic == true;
+    }
+  }
+}
