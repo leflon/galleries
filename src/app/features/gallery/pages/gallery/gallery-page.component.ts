@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {ActivatedRoute, NavigationEnd, Router, RouterLink} from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {combineLatest, filter, map, Observable, of, startWith, switchMap} from 'rxjs';
 import {IGallery} from '../../models/gallery.model';
 import {IMedia} from '../../models/media.model';
@@ -10,17 +10,24 @@ import {AsyncPipe, NgIf} from '@angular/common';
 import {FullscreenMediaComponent} from '../../components/fullscreen-media/fullscreen-media.component';
 import {MediaAdderComponent} from '../../components/media-adder/media-adder.component';
 import {AuthService} from '../../../../shared/services/auth.service';
+import {ButtonComponent} from '../../../../shared/components/button/button.component';
+import {NgIcon, provideIcons} from '@ng-icons/core';
+import {matAdd} from '@ng-icons/material-icons/baseline';
+import {LoadingComponent} from '../../../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-gallery-page',
   imports: [
-    RouterLink,
     GalleryViewerComponent,
     AsyncPipe,
     NgIf,
     FullscreenMediaComponent,
-    MediaAdderComponent
+    MediaAdderComponent,
+    ButtonComponent,
+    NgIcon,
+    LoadingComponent
   ],
+  viewProviders: [provideIcons({matAdd})],
   templateUrl: './gallery-page.component.html',
   styleUrl: './gallery-page.component.css'
 })
@@ -48,6 +55,7 @@ export class GalleryPageComponent {
   }>;
 
   isAdding$!: Observable<boolean>;
+  protected readonly navigator = navigator;
 
   constructor() {
   }
@@ -88,6 +96,4 @@ export class GalleryPageComponent {
       })
     );
   }
-
-
 }

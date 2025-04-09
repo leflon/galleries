@@ -3,6 +3,10 @@ html {
   font-weight: 300;
 }
 
+body {
+  padding: 0 20px;
+}
+
 input[type='text'],
 input[type='password'],
 input[type='email'],

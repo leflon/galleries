@@ -20,8 +20,8 @@ img {
   bottom: 0;
   z-index: 1;
   width: 100%;
-  height: 30%;
-  background: linear-gradient(to top, #0006 0%, transparent 100%);
+  height: 20%;
+  background: linear-gradient(to top, #0004 0%, transparent 100%);
   display: flex;
   flex-direction: column-reverse;
   transform: translateY(100%);
@@ -38,13 +38,18 @@ img {
   top: 0;
   z-index: 1;
   width: 100%;
-  height: 30%;
-  background: linear-gradient(to bottom, #0006 0%, transparent 100%);
+  height: 20%;
+  background: linear-gradient(to bottom, #0004 0%, transparent 100%);
   display: flex;
   flex-direction: row;
   justify-content: end;
+  transform: translateY(-100%);
   transition: transform 0.2s;
   pointer-events: none;
+}
+
+.media-item:hover .top-container {
+  transform: translateY(0);
 }
 
 .top-container .tools {

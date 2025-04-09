@@ -1,7 +1,4 @@
-<div>
-  <a routerLink="/my-galleries">← Back to my galleries</a>
-</div>
-<div *ngIf="gallery$ | async as gallery">
+<div *ngIf="gallery$ | async as gallery else loading">
   <div class="heading">
     @let user = authService.user$ | async;
     @if (user) {
@@ -15,7 +12,11 @@
       {{ media.length }} images
     </div>
   </div>
-  <a routerLink='add'>Add media</a>
+  <app-button>
+    <ng-icon button-icon name="matAdd" size="24"></ng-icon>
+    <span (click)="router.navigate(['add'], {relativeTo: route})">Add
+      media</span>
+  </app-button>
   @let isAdding = isAdding$ | async;
   @if (isAdding) {
     <app-media-adder
@@ -37,5 +38,5 @@
   }
 </div>
 <ng-template #loading>
-  <h1>Loading</h1>
+  <app-loading [size]="30" color="#000000"></app-loading>
 </ng-template>
