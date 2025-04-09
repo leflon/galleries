@@ -13,8 +13,12 @@
       <input (keydown)="tagKeyDown($event)" [(ngModel)]="tagInput" placeholder="Tags seperated by commas"/>
     </div>
     @if (items().length > 0) {
-      <app-button class="save-btn" (click)="save()">
-        Save {{ items().length }} new media
+      <app-button class="save-btn" (click)="save()" [disabled]="isUploading()">
+        @if (isUploading()) {
+          <app-loading [size]="16" color="#fff"></app-loading>
+        } @else {
+          Save {{ items().length }} new media
+        }
       </app-button>
     }
   </div>

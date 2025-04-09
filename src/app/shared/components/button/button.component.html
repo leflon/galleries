@@ -1,5 +1,6 @@
 <button
   (click)="onClick($event)"
+  [class.disabled]="disabled()"
   [class.icon]="hasIcon()"
   [class.textual]="hasContent()"
   [class]="type()"

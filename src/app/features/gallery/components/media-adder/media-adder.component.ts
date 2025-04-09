@@ -8,6 +8,7 @@ import {matDelete} from '@ng-icons/material-icons/baseline';
 import {ButtonComponent} from '../../../../shared/components/button/button.component';
 import {IMediaAdderItem} from '../../models/mediaAdderItem.model';
 import {MediaDrawerComponent} from './media-drawer/media-drawer.component';
+import {LoadingComponent} from '../../../../shared/components/loading/loading.component';
 
 @Component({
   selector: 'app-media-adder',
@@ -16,6 +17,7 @@ import {MediaDrawerComponent} from './media-drawer/media-drawer.component';
     PopupComponent,
     ButtonComponent,
     MediaDrawerComponent,
+    LoadingComponent,
   ],
   viewProviders: [provideIcons({matDelete})],
   templateUrl: './media-adder.component.html',
@@ -32,6 +34,8 @@ export class MediaAdderComponent {
 
   items = signal<IMediaAdderItem[]>([]);
   tags = signal<string[]>([]);
+  isUploading = signal(false);
+
   currentSource = '';
   tagInput = '';
 
@@ -52,7 +56,9 @@ export class MediaAdderComponent {
 
   async save() {
     const savedTags = this.tags();
+    this.isUploading.set(true);
     await this.mediaService.handleMediaAdder(this.items(), savedTags, this.gallery.id);
+    this.isUploading.set(false);
     this.closed.emit();
   }
 

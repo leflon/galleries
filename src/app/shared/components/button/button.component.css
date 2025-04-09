@@ -22,7 +22,13 @@ button {
     background-color: var(--color);
     box-shadow: 0 4px 8px color-mix(in srgb, var(--color), transparent 60%);
     border: none;
-    transition: box-shadow .3s ease, transform .1s ease;
+    transition: box-shadow .3s ease, transform .1s ease, background-color .1s ease;
+
+    &.disabled {
+      background-color: #aaaaaa;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
   }
 
   &.secondary {

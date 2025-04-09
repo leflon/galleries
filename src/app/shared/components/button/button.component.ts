@@ -13,6 +13,7 @@ export class ButtonComponent {
   color = input<string>('');
   textColor = input<string>('');
   class = input<string>('');
+  disabled = input<boolean>(false);
 
   emptyContent = viewChild('noContent');
   emptyIcon = viewChild('noIcon');
@@ -25,6 +26,7 @@ export class ButtonComponent {
 
   onClick($event: MouseEvent) {
     $event.stopPropagation();
+    if (this.disabled()) return;
     this.click.emit($event);
   }
 
