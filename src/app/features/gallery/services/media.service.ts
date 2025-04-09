@@ -99,7 +99,7 @@ export class MediaService {
     batch.delete(deleteRef);
 
     if (deleteData.firebaseFile) {
-      this.storage.deleteFile(deleteData.firebaseFile);
+      this.storage.deleteFile(deleteData.firebaseFile).then();
     }
 
     if (deleteData.previous) {
