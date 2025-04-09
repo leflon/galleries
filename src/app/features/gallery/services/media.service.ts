@@ -41,7 +41,8 @@ export class MediaService {
           type: 'image' as 'image',
           previous: null,
           next: null,
-          url: entry.url!
+          url: entry.url!,
+          firebaseFile: null,
         });
       } else {
         media.push({
@@ -49,9 +50,11 @@ export class MediaService {
           type: 'image' as 'image',
           previous: null,
           next: null,
-          url: uploaded[i++].url
+          url: uploaded[i].url,
+          firebaseFile: uploaded[i].id,
         });
       }
+      i++;
     }
     return this.addBulk(media, galleryId);
   }
@@ -94,6 +97,10 @@ export class MediaService {
     const deleteData = await firstValueFrom(docData(deleteRef, {idField: 'id'}) as Observable<IMedia>);
     if (!deleteData) return;
     batch.delete(deleteRef);
+
+    if (deleteData.firebaseFile) {
+      this.storage.deleteFile(deleteData.firebaseFile);
+    }
 
     if (deleteData.previous) {
       const previousRef = doc(this.firestore, `galleries/${galleryId}/media/${deleteData.previous}`);

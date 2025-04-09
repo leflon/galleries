@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
+import {deleteObject, getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
 import {Firestore} from '@angular/fire/firestore';
 import {v4} from 'uuid';
 
@@ -17,10 +17,15 @@ export class StorageService {
       await uploadBytes(imgRef, file);
       const url = await getDownloadURL(imgRef);
       return {
-        id,
+        id: `${galleryId}/${id}`,
         url
       };
     });
     return Promise.all(uploads);
+  }
+
+  deleteFile(path: string) {
+    const imgRef = ref(this.storage, path);
+    return deleteObject(imgRef);
   }
 }

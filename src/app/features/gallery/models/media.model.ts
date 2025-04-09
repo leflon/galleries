@@ -5,4 +5,5 @@ export interface IMedia {
   url: string;
   previous: string | null;
   next: string | null;
+  firebaseFile: string | null;
 }
