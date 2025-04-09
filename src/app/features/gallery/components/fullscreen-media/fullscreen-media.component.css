@@ -3,10 +3,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 img {
   position: relative;
   height: 90dvh;
+  max-width: calc(100% - 150px);
   object-fit: contain;
 }
