@@ -5,13 +5,15 @@ import {ButtonComponent} from '../../../../../shared/components/button/button.co
 import {NgIcon, provideIcons} from '@ng-icons/core';
 import {matDelete, matOpenInNew} from '@ng-icons/material-icons/baseline';
 import {MediaService} from '../../../services/media.service';
+import {MediaTagComponent} from '../../../../../shared/components/media-tag/media-tag.component';
 
 @Component({
   selector: 'app-media-item',
   imports: [
     RouterLink,
     ButtonComponent,
-    NgIcon
+    NgIcon,
+    MediaTagComponent
   ],
   providers: [provideIcons({matDelete, matOpenInNew})],
   templateUrl: './media-item.component.html',

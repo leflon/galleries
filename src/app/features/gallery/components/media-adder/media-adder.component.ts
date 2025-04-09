@@ -9,6 +9,7 @@ import {ButtonComponent} from '../../../../shared/components/button/button.compo
 import {IMediaAdderItem} from '../../models/mediaAdderItem.model';
 import {MediaDrawerComponent} from './media-drawer/media-drawer.component';
 import {LoadingComponent} from '../../../../shared/components/loading/loading.component';
+import {MediaTagComponent} from '../../../../shared/components/media-tag/media-tag.component';
 
 @Component({
   selector: 'app-media-adder',
@@ -18,6 +19,7 @@ import {LoadingComponent} from '../../../../shared/components/loading/loading.co
     ButtonComponent,
     MediaDrawerComponent,
     LoadingComponent,
+    MediaTagComponent,
   ],
   viewProviders: [provideIcons({matDelete})],
   templateUrl: './media-adder.component.html',
@@ -51,6 +53,11 @@ export class MediaAdderComponent {
       this.tags().pop();
       this.tags.set(this.tags());
     }
+  }
+
+  removeTag(index: number) {
+    this.tags().splice(index, 1);
+    this.tags.set(this.tags());
   }
 
 

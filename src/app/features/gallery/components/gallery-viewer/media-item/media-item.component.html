@@ -19,7 +19,7 @@
     <div class="bottom-container">
       <div class="tags">
         @for (t of data().tags; track t) {
-          <div class="tag">{{ t }}</div>
+          <app-media-tag type='light'>{{ t }}</app-media-tag>
         }
       </div>
     </div>

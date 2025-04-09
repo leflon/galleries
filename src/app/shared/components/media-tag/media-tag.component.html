@@ -1,0 +1,6 @@
+<div [class]="type()">
+  @if (deletable()) {
+    <ng-icon class="icon" name="matClose" size="16" (click)="delete.emit()"></ng-icon>
+  }
+  <ng-content></ng-content>
+</div>

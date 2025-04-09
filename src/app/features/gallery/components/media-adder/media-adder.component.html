@@ -3,13 +3,13 @@
     <h1>Add media to {{ gallery.name }}</h1>
     <app-media-drawer [(items)]="items"></app-media-drawer>
     <div class="tags-input">
-      @if (tags().length > 0) {
-        <div class="tag-list">
-          @for (tag of tags(); track tag) {
-            <div class="tag">{{ tag }}</div>
-          }
-        </div>
-      }
+      <div class="tag-list">
+        @for (tag of tags(); track tag; let i = $index) {
+          <app-media-tag [deletable]="true"
+                         (delete)="removeTag(i)">{{ tag }}
+          </app-media-tag>
+        }
+      </div>
       <input (keydown)="tagKeyDown($event)" [(ngModel)]="tagInput" placeholder="Tags seperated by commas"/>
     </div>
     @if (items().length > 0) {
