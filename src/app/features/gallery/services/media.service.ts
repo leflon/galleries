@@ -21,6 +21,12 @@ export class MediaService {
   firestore = inject(Firestore);
   storage = inject(StorageService);
 
+  async getGalleryThumbnails(galleryId: string): Promise<IMedia[]> {
+    const col = collection(this.firestore, `galleries/${galleryId}/media`);
+    const q = query(col, where('type', '==', 'image'), limit(4));
+    return firstValueFrom(collectionData(q, {idField: 'id'}) as Observable<IMedia[]>);
+  }
+
   getAllFromGallery(galleryId: string): Observable<IMedia[]> {
     const mediaRef = collection(this.firestore, `galleries/${galleryId}/media`);
     const col = collectionData(mediaRef, {idField: 'id'}) as Observable<IMedia[]>;

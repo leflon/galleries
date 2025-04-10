@@ -1,5 +1,14 @@
 import {inject, Injectable} from '@angular/core';
-import {collection, collectionData, doc, docData, Firestore, query, where} from '@angular/fire/firestore';
+import {
+  collection,
+  collectionData,
+  doc,
+  docData,
+  Firestore,
+  getCountFromServer,
+  query,
+  where
+} from '@angular/fire/firestore';
 import {catchError, filter, Observable, of, switchMap} from 'rxjs';
 import {IGallery} from '../models/gallery.model';
 import {AuthService} from '../../../shared/services/auth.service';
@@ -30,5 +39,13 @@ export class GalleryService {
       }),
       catchError(_err => of(null))
     );
+  }
+
+  async getItemCount(id: string): Promise<number> {
+    const col = collection(this.firestore, `galleries/${id}/media`);
+    console.log('cc ');
+    const count = await getCountFromServer(col);
+    console.log(count.data());
+    return count.data().count;
   }
 }

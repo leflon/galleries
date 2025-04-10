@@ -1,4 +1,7 @@
 <h1>My galleries</h1>
-<div *ngFor="let g of galleries$ | async">
-  <a [routerLink]="['/gallery', g.id]">{{g.name}}</a>
-</div>
+@let galleries = galleries$ | async;
+@for (g of galleries; track g.id) {
+  <app-gallery-card [galleryId]="g.id"
+                    [galleryName]="g.name">
+  </app-gallery-card>
+}

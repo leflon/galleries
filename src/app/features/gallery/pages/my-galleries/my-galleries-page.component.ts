@@ -1,16 +1,15 @@
-import {AsyncPipe, NgForOf} from '@angular/common';
+import {AsyncPipe} from '@angular/common';
 import {Component, inject} from '@angular/core';
-import {RouterLink} from '@angular/router';
 import {Observable} from 'rxjs';
 import {IGallery} from '../../models/gallery.model';
 import {GalleryService} from '../../services/gallery.service';
+import {GalleryCardComponent} from '../../components/gallery-card/gallery-card.component';
 
 @Component({
   selector: 'app-my-galleries-page',
   imports: [
-    NgForOf,
     AsyncPipe,
-    RouterLink
+    GalleryCardComponent
   ],
   templateUrl: './my-galleries-page.component.html',
   styleUrl: './my-galleries-page.component.css'
