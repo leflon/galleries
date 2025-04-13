@@ -1,13 +1,10 @@
-:host > div {
+:host {
   position: relative;
-  display: flex;
-  width: 200px;
-  height: 200px;
-  align-items: center;
-  justify-content: center;
+  display: block;
+  width: 300px;
+  height: 300px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  min-width: 200px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
@@ -15,7 +12,7 @@
 
 .buttons {
   z-index: 2;
-  width: 100%;
+  right: 0;
   top: 0;
   position: absolute;
   display: flex;
@@ -24,10 +21,12 @@
   color: white;
   padding: 2px;
   box-sizing: border-box;
+  opacity: 0;
+  transition: opacity 0.2s;
 }
 
-.name {
-  font: 700 14pt 'Lexend';
+:host:hover .buttons {
+  opacity: 1;
 }
 
 .thumbnail {
@@ -48,9 +47,20 @@
 
   &:has(:nth-child(3)) {
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 2fr 1fr;
   }
 
+}
+
+.loading {
+  background: #aaa;
+  animation: loading 2.5s infinite;
+}
+
+@keyframes loading {
+  50% {
+    opacity: 0.2;
+  }
 }
 
 .thumbnail > img {
@@ -61,9 +71,16 @@
   object-fit: cover;
 }
 
+.link {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
 .backdrop {
   position: absolute;
-  z-index: 1;
   width: 100%;
   height: 100%;
   background: #0003;
@@ -71,28 +88,74 @@
 }
 
 .content {
-  z-index: 2;
+  position: absolute;
+  bottom: 0;
   color: white;
   box-sizing: border-box;
   text-align: left;
   width: 100%;
-  align-self: flex-end;
   padding: 10px;
-  transform: translateY(calc(7pt + 5px));
+  transform: translateY(calc(12pt + 5px));
   transition: transform 0.2s;
+}
+
+.name {
+  font: 700 25pt 'Lexend';
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .count {
   line-height: 0;
-  font: 300 7pt 'Lexend';
+  font: 300 12pt 'Lexend';
   opacity: 0;
   transition: opacity 0.4s;
 }
 
-:host > div:hover .content {
+:host:hover .content {
   transform: translateY(0);
 
   & > .count {
     opacity: 1;
   }
+}
+
+.edit-name {
+  width: 100%;
+  position: absolute;
+  height: 32px;
+  bottom: 0;
+  display: flex;
+}
+
+.edit-name .input-container {
+  position: relative;
+  flex: 1;
+}
+
+.edit-name input {
+  height: 100%;
+  width: 100%;
+  padding-right: 24px;
+  border: none;
+  border-radius: 0;
+}
+
+.input-container .clear {
+  position: absolute;
+  appearance: none;
+  background: none;
+  border: none;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+}
+
+.edit-name > button {
+  background: #1f4ee4;
+  border: none;
+  display: block;
+  cursor: pointer;
 }

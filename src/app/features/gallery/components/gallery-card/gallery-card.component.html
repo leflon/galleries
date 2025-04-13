@@ -1,20 +1,47 @@
-<div>
-  <div class="thumbnail">
-    @for (s of (thumbnails | async); track s.id) {
-      <img [src]="s.url" [alt]="s.tags.join(',')"/>
-    }
-  </div>
-  <div class="buttons">
-    <app-button class="btn" color="white" type="discrete">
-      <ng-icon button-icon name="matEdit" size="16"></ng-icon>
-    </app-button>
-    <app-button class="btn" color="white" type="discrete">
-      <ng-icon button-icon name="matDelete" size="16"></ng-icon>
-    </app-button>
-  </div>
-  <div class="backdrop"></div>
-  <div class="content">
-    <div class="name">{{ galleryName() }}</div>
-    <div class="count">{{ itemCount | async }} items</div>
-  </div>
+<div class="buttons">
+  <app-button (click)="this.isEditing.set(!this.isEditing())" class="btn"
+              color="white"
+              type="discrete">
+    <ng-icon button-icon name="matEdit" size="24"></ng-icon>
+  </app-button>
+  <app-button (click)="alert('attends un peu')" class="btn" color="white"
+              type="discrete">
+    <ng-icon button-icon name="matDelete" size="24"></ng-icon>
+  </app-button>
 </div>
+<div class="thumbnail">
+  @for (s of (thumbnails | async); track s.id) {
+    <img [src]="s.url" [alt]="s.tags.join(',')"/>
+  } @empty {
+    <div class="loading"></div>
+  }
+</div>
+<div (click)='navigate()' class="link">
+  <div class="backdrop"></div>
+  @if (isEditing()) {
+    <div class="edit-name">
+      <div class="input-container">
+        <input placeholder="Enter a new category name" type="text"
+               [(ngModel)]="inputValue" #inputElement
+               (keydown.enter)="updateGalleryName($event)"/>
+        @if (inputValue().length > 0) {
+          <ng-icon class="clear" (click)="inputValue.set('')" name="matClose"
+                   size="24"></ng-icon>
+        }
+      </div>
+      <button (click)="updateGalleryName($event)">
+        @if (isLoading()) {
+          <app-loading color="white" [size]="18"></app-loading>
+        } @else {
+          <ng-icon color='white' name="matCheck" size="24"></ng-icon>
+        }
+      </button>
+    </div>
+  } @else {
+    <div class="content">
+      <div class="name">{{ galleryName() }}</div>
+      <div class="count">{{ itemCount | async }} items</div>
+    </div>
+  }
+</div>
+

@@ -7,6 +7,7 @@ import {
   Firestore,
   getCountFromServer,
   query,
+  setDoc,
   where
 } from '@angular/fire/firestore';
 import {catchError, filter, Observable, of, switchMap} from 'rxjs';
@@ -47,5 +48,13 @@ export class GalleryService {
     const count = await getCountFromServer(col);
     console.log(count.data());
     return count.data().count;
+  }
+
+  async renameGallery(id: string, name: string) {
+    name = name.trim();
+    if (!name)
+      return;
+    const docRef = doc(this.firestore, `galleries/${id}`);
+    return setDoc(docRef, {name}, {merge: true});
   }
 }
