@@ -10,9 +10,14 @@
   </app-button>
 </div>
 <div class="thumbnail">
-  @for (s of (thumbnails | async); track s.id) {
-    <img [src]="s.url" [alt]="s.tags.join(',')"/>
-  } @empty {
+  @let resolved = thumbnails | async;
+  @if (resolved) {
+    @for (s of resolved; track s.id) {
+      <img [src]="s.url" [alt]="s.tags.join(',')"/>
+    } @empty {
+      <div class="empty"></div>
+    }
+  } @else {
     <div class="loading"></div>
   }
 </div>

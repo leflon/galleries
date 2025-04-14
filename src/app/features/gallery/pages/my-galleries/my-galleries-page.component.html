@@ -1,9 +1,37 @@
 <h1>My galleries</h1>
 @let galleries = galleries$ | async;
-@for (g of galleries; track g.id) {
-  <app-gallery-card [galleryId]="g.id"
-                    [galleryName]="g.name">
-  </app-gallery-card>
-} @empty {
+@if (galleries) {
+  <div class="galleries">
+    <div class="add-gallery">
+      <div class="inner"
+           (click)="isCreatingGallery.set(!isCreatingGallery())">
+        <ng-icon name="matAddCircleOutline" size="64"></ng-icon>
+        @if (isCreatingGallery()) {
+          <div class="new-input">
+            <input #newGalleryInput (click)="$event.stopPropagation()"
+                   type="text" placeholder="New gallery name"
+                   [(ngModel)]="newGalleryModel"
+                   (keydown.enter)="addGallery()"
+            />
+            <app-button (click)="addGallery()">
+              @if (isCreationLoading()) {
+                <app-loading [size]="18" color="white"></app-loading>
+              } @else {
+                <ng-icon name="matCheck" size="24"></ng-icon>
+              }
+            </app-button>
+          </div>
+        } @else {
+          <div>Create a gallery</div>
+        }
+      </div>
+    </div>
+    @for (g of galleries; track g.id) {
+      <app-gallery-card [galleryId]="g.id"
+                        [galleryName]="g.name">
+      </app-gallery-card>
+    }
+  </div>
+} @else {
   <app-loading></app-loading>
 }

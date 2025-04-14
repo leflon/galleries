@@ -10,9 +10,10 @@ import {
   setDoc,
   where
 } from '@angular/fire/firestore';
-import {catchError, filter, Observable, of, switchMap} from 'rxjs';
+import {catchError, filter, firstValueFrom, Observable, of, switchMap} from 'rxjs';
 import {IGallery} from '../models/gallery.model';
 import {AuthService} from '../../../shared/services/auth.service';
+import {User} from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,15 @@ export class GalleryService {
     const count = await getCountFromServer(col);
     console.log(count.data());
     return count.data().count;
+  }
+
+  async addGallery(name: string) {
+    name = name.trim();
+    if (!name)
+      return;
+    const user = await firstValueFrom(this.authService.user$) as User;
+    const docRef = doc(collection(this.firestore, 'galleries'));
+    return setDoc(docRef, {name, ownerId: user.uid}, {merge: true});
   }
 
   async renameGallery(id: string, name: string) {

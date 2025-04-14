@@ -1,0 +1,48 @@
+h1 {
+  text-align: center;
+  font-size: 32pt;
+}
+
+.galleries {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.add-gallery {
+  width: 300px;
+  height: 300px;
+  border: 4px dashed #aaa;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #aaa;
+  font: 20pt 'Lexend';
+  cursor: pointer;
+
+  &:hover .inner {
+    background-color: #eee;
+  }
+}
+
+.add-gallery .inner {
+  height: 100%;
+  display: flex;
+  border-radius: 6px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: .1s ease;
+}
+
+.new-input {
+  margin: 6px 0;
+  display: flex;
+  gap: 10px;
+}
+
+.add-gallery .inner input {
+  text-align: center;
+}
