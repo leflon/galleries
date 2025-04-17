@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {deleteObject, getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
+import {getDownloadURL, ref, Storage, uploadBytes} from '@angular/fire/storage';
 import {Firestore} from '@angular/fire/firestore';
 import {v4} from 'uuid';
 
@@ -22,10 +22,5 @@ export class StorageService {
       };
     });
     return Promise.all(uploads);
-  }
-
-  deleteFile(path: string) {
-    const imgRef = ref(this.storage, path);
-    return deleteObject(imgRef);
   }
 }

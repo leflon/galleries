@@ -104,14 +104,11 @@ export class MediaService {
     if (!deleteData) return;
     batch.delete(deleteRef);
 
-    if (deleteData.firebaseFile) {
-      this.storage.deleteFile(deleteData.firebaseFile).then();
-    }
-
     if (deleteData.previous) {
       const previousRef = doc(this.firestore, `galleries/${galleryId}/media/${deleteData.previous}`);
       batch.update(previousRef, {next: deleteData.next});
     }
+
     if (deleteData.next) {
       const nextRef = doc(this.firestore, `galleries/${galleryId}/media/${deleteData.next}`);
       batch.update(nextRef, {previous: deleteData.previous});
