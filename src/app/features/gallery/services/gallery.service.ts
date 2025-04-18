@@ -59,7 +59,8 @@ export class GalleryService {
       return;
     const user = await firstValueFrom(this.authService.user$) as User;
     const docRef = doc(collection(this.firestore, 'galleries'));
-    return setDoc(docRef, {name, ownerId: user.uid}, {merge: true});
+    await setDoc(docRef, {name, ownerId: user.uid}, {merge: true});
+    return docRef.id;
   }
 
   async renameGallery(id: string, name: string) {

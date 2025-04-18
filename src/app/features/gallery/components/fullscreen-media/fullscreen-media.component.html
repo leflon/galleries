@@ -8,6 +8,8 @@
       >
         <ng-icon button-icon name="matChevronLeft" size="32"></ng-icon>
       </app-button>
+    } @else {
+      <div class="btn-placeholder"></div>
     }
     <img [alt]="data.tags.join(',')" [src]="data.url"/>
 
@@ -19,6 +21,8 @@
       >
         <ng-icon button-icon name="matChevronRight" size="32"></ng-icon>
       </app-button>
+    } @else {
+      <div class="btn-placeholder"></div>
     }
   </div>
 </app-popup>

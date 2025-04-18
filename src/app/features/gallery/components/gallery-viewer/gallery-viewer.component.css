@@ -5,3 +5,9 @@
   grid-template-columns: repeat(auto-fill, 300px);
   gap: 10px;
 }
+
+@media screen and (max-width: 600px) {
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, 150px);
+  }
+}

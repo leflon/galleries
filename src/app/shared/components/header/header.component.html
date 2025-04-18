@@ -3,7 +3,11 @@
   <h1>Galleries</h1>
   @let user = auth.user$ | async;
   @if (user) {
-    <a routerLink="/auth" [queryParams]="{'logout': ''}">Logout ({{ user.displayName }})</a>
+    <a routerLink="/auth" [queryParams]="{'logout': ''}">
+      Logout
+      <span class="user-name">({{ user.displayName }})
+      </span>
+    </a>
   } @else {
     <a routerLink="/auth">Login</a>
   }

@@ -12,3 +12,8 @@ img {
   max-width: calc(100% - 150px);
   object-fit: contain;
 }
+
+.btn-placeholder {
+  width: 44px;
+  height: 44px;
+}

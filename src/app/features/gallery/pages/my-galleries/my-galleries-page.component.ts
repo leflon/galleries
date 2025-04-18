@@ -9,6 +9,7 @@ import {NgIcon, provideIcons} from '@ng-icons/core';
 import {matAddCircleOutline, matCheck} from '@ng-icons/material-icons/baseline';
 import {ButtonComponent} from '../../../../shared/components/button/button.component';
 import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-my-galleries-page',
@@ -27,6 +28,7 @@ import {FormsModule} from '@angular/forms';
 export class MyGalleriesPageComponent {
   galleryService = inject(GalleryService);
   galleries$: Observable<IGallery[]>;
+  router = inject(Router);
 
   isCreatingGallery = signal(false);
   isCreationLoading = signal(false);
@@ -50,7 +52,8 @@ export class MyGalleriesPageComponent {
       return;
     this.isCreationLoading.set(true);
     try {
-      await this.galleryService.addGallery(this.newGalleryName());
+      const id = await this.galleryService.addGallery(this.newGalleryName());
+      this.router.navigate(['/gallery', id]);
     } finally {
       this.newGalleryModel.set('');
       this.isCreationLoading.set(false);
