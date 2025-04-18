@@ -1,59 +1,68 @@
 # Galleries
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+## Simple *Pinterest-ish* gallery app
 
-## Development server
+Galleries is a simple web app that allows you to create and manage galleries
+of images (soon enough, videos too).
 
-To start a local development server, run:
+You can either add images from distant locations or upload them from your
+personal files.
 
-```bash
-ng serve
-```
+## Features
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Create and manage galleries
+- Upload images
+- Add images from URLs
+- Add tags to images
+- _Search images by tags_ (soon)
 
-## Code scaffolding
+## Technologies
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+This app is built with:
 
-```bash
-ng generate components components-name
-```
+- [Angular](https://angular.dev)
+- [Firebase](https://firebase.google.com), using
+  - **Firestore**
+  - **Firebase Storage**
+  - **Firebase Authentication**
+  - **Firebase Functions**
+  - **Firebase Hosting**
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Installation
 
-```bash
-ng generate --help
-```
+1. Clone the repository
 
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+*Using Git*
 
 ```bash
-ng test
+git clone https://github.com/leflon/galleries.git
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+*Using GitHub CLI*
 
 ```bash
-ng e2e
+gh repo clone leflon/galleries
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+2. Install dependencies
 
-## Additional Resources
+```bash
+npm install
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+3. Create a Firebase project
+   Follow [these instructions](https://firebase.google.com/docs/web/setup#add-firebase-to-your-app) to create a Firebase project and add the Firebase configuration to your app.
+
+4. Run the app
+
+```bash
+npm start
+```
+
+## Contributing
+
+If you want to contribute to this project, feel free to open an issue or a pull request.
+
+Please note that this project is purely personal and has no vocation to
+become a full-fledged app. It is meant to be a learning experience for me.
+However, if you have any suggestions or improvements, I would be happy to implement them.
