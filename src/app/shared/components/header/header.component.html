@@ -1,5 +1,10 @@
 <div>
   <a routerLink="/my-galleries">My galleries</a>
   <h1>Galleries</h1>
-  <a routerLink="/auth">Login</a>
+  @let user = auth.user$ | async;
+  @if (user) {
+    <a routerLink="/auth" [queryParams]="{'logout': ''}">Logout ({{ user.displayName }})</a>
+  } @else {
+    <a routerLink="/auth">Login</a>
+  }
 </div>

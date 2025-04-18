@@ -16,6 +16,12 @@ export class AuthPageComponent {
   router = inject(Router);
 
   constructor() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('logout')) {
+      this.authService.logout().then(() => {
+        this.router.navigate(['/auth'], {replaceUrl: true});
+      });
+    }
     this.authService.user$.subscribe(user => {
       if (user)
         this.router.navigate(['/my-galleries']);
