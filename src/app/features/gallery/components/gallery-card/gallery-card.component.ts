@@ -76,11 +76,12 @@ export class GalleryCardComponent {
   deleteGallery() {
     if (this.isLoading() || this.isDeleting())
       return;
+    if (!confirm('Are you sure you want to delete this gallery?'))
+      return;
+
     this.isLoading.set(false);
     this.isEditing.set(false);
     this.isDeleting.set(true);
-    if (!confirm('Are you sure you want to delete this gallery?'))
-      return;
     this.gallery.deleteGallery(this.galleryId()).finally(() => {
       this.isDeleting.set(false);
     });
