@@ -31,6 +31,7 @@ export class GalleryCardComponent {
 
   isEditing = signal(false);
   isLoading = signal(false);
+  isDeleting = signal(false);
   inputValue = signal('');
   newName = computed(() => this.inputValue().trim());
 
@@ -70,6 +71,19 @@ export class GalleryCardComponent {
     if (this.isEditing()) return;
 
     this.router.navigate(['..', 'gallery', this.galleryId()]);
+  }
+
+  deleteGallery() {
+    if (this.isLoading() || this.isDeleting())
+      return;
+    this.isLoading.set(false);
+    this.isEditing.set(false);
+    this.isDeleting.set(true);
+    if (!confirm('Are you sure you want to delete this gallery?'))
+      return;
+    this.gallery.deleteGallery(this.galleryId()).finally(() => {
+      this.isDeleting.set(false);
+    });
   }
 
   ngOnInit() {

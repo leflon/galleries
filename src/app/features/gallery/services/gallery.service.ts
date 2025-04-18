@@ -14,12 +14,14 @@ import {catchError, filter, firstValueFrom, Observable, of, switchMap} from 'rxj
 import {IGallery} from '../models/gallery.model';
 import {AuthService} from '../../../shared/services/auth.service';
 import {User} from '@angular/fire/auth';
+import {Functions, httpsCallable} from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GalleryService {
   firestore = inject(Firestore);
+  functions = inject(Functions);
   authService = inject(AuthService);
 
   getMyGalleries() {
@@ -66,5 +68,10 @@ export class GalleryService {
       return;
     const docRef = doc(this.firestore, `galleries/${id}`);
     return setDoc(docRef, {name}, {merge: true});
+  }
+
+  async deleteGallery(id: string) {
+    const deleteGalleryFn = httpsCallable(this.functions, 'deleteGallery');
+    return deleteGalleryFn({galleryId: id});
   }
 }
