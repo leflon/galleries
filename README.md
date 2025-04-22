@@ -1,6 +1,12 @@
-# Galleries
-
-## Simple *Pinterest-ish* gallery app
+<p align='center'>
+  <img src='/github-splash.png' alt='Galleries' width='512' />
+  <h2 align='center'>Simple <i>Pinterest-ish</i> gallery app</h2>
+</p>
+<p align='center'>
+  <img src="https://img.shields.io/badge/typescript-3178c6?logo=typescript&style=for-the-badge&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/angular-F3143E?logo=angular&style=for-the-badge" alt="Angular">
+  <img src="https://img.shields.io/badge/firebase-DD2C00?logo=firebase&style=for-the-badge" alt="Firebase">
+</p>
 
 Galleries is a simple web app that allows you to create and manage galleries
 of images (soon enough, videos too).
